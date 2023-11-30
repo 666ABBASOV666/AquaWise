@@ -691,7 +691,7 @@ public class MyAquariums extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         MyAquariumsMain.setVisible(true);
-        jPanel1.setVisible(false);
+        //jPanel1.setVisible(false);
     }//GEN-LAST:event_MyAquariumsTabMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
