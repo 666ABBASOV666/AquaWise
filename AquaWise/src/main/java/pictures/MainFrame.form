@@ -378,6 +378,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add New aquarium+"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
@@ -510,7 +513,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField9">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField9"/>
+                    <Property name="text" type="java.lang.String" value="Fish Count"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField10">

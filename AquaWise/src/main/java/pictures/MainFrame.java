@@ -207,6 +207,11 @@ public class MainFrame extends javax.swing.JFrame {
         myAquariumsPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton11.setText("Add New aquarium+");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("My Aquariums");
@@ -287,7 +292,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTextField8.setText("Fish Count");
 
-        jTextField9.setText("jTextField9");
+        jTextField9.setText("Fish Count");
 
         jTextField10.setText("Water:");
 
@@ -524,6 +529,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
