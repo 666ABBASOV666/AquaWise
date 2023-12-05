@@ -574,7 +574,7 @@ public class MyAquariums extends javax.swing.JFrame {
         MyAquariumsMainLayout.setHorizontalGroup(
             MyAquariumsMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MyAquariumsMainLayout.createSequentialGroup()
-                .addGap(0, 138, Short.MAX_VALUE)
+                .addGap(0, 137, Short.MAX_VALUE)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
