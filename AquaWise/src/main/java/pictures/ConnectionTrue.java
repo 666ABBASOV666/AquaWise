@@ -25,7 +25,7 @@ public class ConnectionTrue {
 
             FirebaseApp.initializeApp(options);
             db = FirestoreClient.getFirestore();
-            System.out.println("qwerty");
+            System.out.println("Success!!! ");
         }catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
