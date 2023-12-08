@@ -1406,6 +1406,11 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+        /////////////////////////////////////////////////////////////////////////////
+        //Database part "DO WHATEVER YOU WANT BUT DO NOT TOUCH THIS PART ps. -Elkhan"
+        /////////////////////////////////////////////////////////////////////////////
+        ConnectionTrue.firebaseConnector();
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
