@@ -4,6 +4,9 @@
  */
 package pictures;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author efeerdogmus
@@ -41,7 +44,7 @@ public class LoginSignUp extends javax.swing.JFrame {
 
         popupMenu1.setLabel("popupMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 74, 173));
 
@@ -191,7 +194,10 @@ public class LoginSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
-        setVisible(true);
+        close();
+        SignUp signup = new SignUp();
+        signup.setVisible(true);
+        
         
         
     }//GEN-LAST:event_signupButtonActionPerformed
@@ -259,7 +265,9 @@ public class LoginSignUp extends javax.swing.JFrame {
     private javax.swing.JButton signupButton;
     // End of variables declaration//GEN-END:variables
 
-    private void signup() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void close() {
+        WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
+
 }
