@@ -1,8 +1,12 @@
 
 package pictures;
 
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,7 +18,9 @@ public class SignUp extends javax.swing.JFrame {
      * Creates new form SignUp
      */
     public SignUp() {
+        ConnectionTrue.ConnectFirebase();
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -75,7 +81,12 @@ public class SignUp extends javax.swing.JFrame {
         signupButton.setBackground(new java.awt.Color(0, 0, 0));
         signupButton.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
         signupButton.setForeground(new java.awt.Color(255, 255, 255));
-        signupButton.setText("Sign Up");
+        signupButton.setText("SIGN UP");
+        signupButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signupButtonActionPerformed(evt);
+            }
+        });
 
         alreadyButton.setBackground(new java.awt.Color(0, 51, 204));
         alreadyButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -202,33 +213,18 @@ public class SignUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
+    private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
+        /////////////////////////////////////////////////////////////
+        //DO NOT CHANGE ANYTHING WITHOUT TELLING ME ps. -ELkhan//////
+        /////////////////////////////////////////////////////////////
+        save();        
+        
+    }//GEN-LAST:event_signupButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -253,8 +249,35 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
 
+    //used for reopening the window frames
+    //do not forget to chenge the frame to dispose type
     private void close() {
         WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+    }
+
+    private void save() {
+        
+        int id = (int) (Math.random() * 100000);
+        try {
+            Map<String, Object> datas = new HashMap<>();
+            datas.put("Name", nameField.getText().toString());
+            datas.put("Surname", surnameField.getText().toString());
+            datas.put("Email", emailField.getText().toString());
+            datas.put("Password", passwordField.getText().toString());
+            personProvider.savePerson("Person", String.valueOf(id), datas);
+            JOptionPane.showMessageDialog(null, "Saved successfully");
+            clearForm();
+        }catch (HeadlessException e){
+        System.err.println("Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+        }
+    }
+    
+    void clearForm() {
+        nameField.setText("");
+        surnameField.setText("");
+        emailField.setText("");
+        passwordField.setText("");
     }
 }

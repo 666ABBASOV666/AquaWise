@@ -1395,7 +1395,7 @@ public class MainFrame extends javax.swing.JFrame {
         /////////////////////////////////////////////////////////////////////////////
         //Database part "DO WHATEVER YOU WANT BUT DO NOT TOUCH THIS PART ps. -Elkhan"
         /////////////////////////////////////////////////////////////////////////////
-        ConnectionTrue.firebaseConnector();
+        ConnectionTrue.ConnectFirebase();
         
     }
 

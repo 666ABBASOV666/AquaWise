@@ -16,7 +16,7 @@ public class ConnectionTrue {
     
     public static Firestore db;
     
-    public static void firebaseConnector() {
+    public static void ConnectFirebase() {
         try {
             FileInputStream sa = new FileInputStream("authfirebaseaquawise.json");
             FirebaseOptions options = FirebaseOptions.builder()
