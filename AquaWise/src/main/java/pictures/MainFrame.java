@@ -6,9 +6,12 @@
 package pictures;
 
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import static pictures.DatabaseHandler.removePerson;
 
 /**
  *
@@ -19,6 +22,9 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    
+    private String loggedInEmail;
+    
     public MainFrame() {
         initComponents();
     }
@@ -1376,13 +1382,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        
         userEditor();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void removeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserButtonActionPerformed
         // TODO add your handling code here:
-        userRemover();
+        removePerson(loggedInEmail);
+        close();
+        LoginSignUp loginSignUp = new LoginSignUp();
+        loginSignUp.setVisible(true);
     }//GEN-LAST:event_removeUserButtonActionPerformed
 
     /**
@@ -1569,22 +1577,23 @@ public class MainFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Couldn't edit");
         }
     }
-    
-    private void userRemover() {
-    try {
-            personProvider.removePerson("Person", "31894");
-            JOptionPane.showMessageDialog(null, "Removed successfully");
-            clearForm();
-        }catch (HeadlessException e){
-        System.err.println("Error: " + e.getMessage());
-        JOptionPane.showMessageDialog(null, "Couldn't delete");
-        }
-    }
+
     
     void clearForm() {
         nameField.setText("");
         surnameField.setText("");
         emailField.setText("");
         passwordField.setText("");
+    }
+    
+    //this method is for Login class so that we could use the instance of the email in MainFrame class
+    public void setLoggedInEmail(String email) {
+        this.loggedInEmail = email;
+    }
+
+    private void close() {
+        //        WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
+        //        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+        this.dispose();
     }
 }

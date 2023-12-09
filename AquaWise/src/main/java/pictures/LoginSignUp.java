@@ -45,7 +45,7 @@ public class LoginSignUp extends javax.swing.JFrame {
 
         popupMenu1.setLabel("popupMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 74, 173));
 
@@ -219,6 +219,7 @@ public class LoginSignUp extends javax.swing.JFrame {
 
             // Open the MainFrame
             MainFrame mainFrame = new MainFrame();
+            mainFrame.setLoggedInEmail(email); // Set the logged-in email
             mainFrame.setVisible(true);
 
             // Close the current LoginSignUp frame
@@ -227,7 +228,7 @@ public class LoginSignUp extends javax.swing.JFrame {
             // Login failed
             JOptionPane.showMessageDialog(null, "Wrong email or password. Please try again.");
             // You can display an error message or perform other actions here.
-        } 
+        }  
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -286,8 +287,7 @@ public class LoginSignUp extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void close() {
-        WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+        this.dispose();
     }
 
 }

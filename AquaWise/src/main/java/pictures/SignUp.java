@@ -50,7 +50,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -251,8 +251,9 @@ public class SignUp extends javax.swing.JFrame {
     //used for reopening the window frames
     //do not forget to chenge the frame to dispose type
     private void close() {
-        WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+//        WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
+//        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+        this.dispose();
     }
     
     private boolean isPersonAlreadySignedUp(String email) {
