@@ -5,6 +5,11 @@
  */
 package pictures;
 
+import java.awt.HeadlessException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -137,16 +142,16 @@ public class MainFrame extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         settingsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        surnameField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        emailField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        removeUserButton = new javax.swing.JButton();
         supportPanel = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -1148,33 +1153,43 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("Name:");
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
+        nameField.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
         jLabel3.setText("Surname:");
 
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
+        surnameField.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel4.setForeground(new java.awt.Color(51, 51, 255));
         jLabel4.setText("Email Address:");
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
+        emailField.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel5.setForeground(new java.awt.Color(51, 51, 255));
         jLabel5.setText("Password:");
 
-        jPasswordField1.setBackground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setText("jPasswordField1");
+        passwordField.setBackground(new java.awt.Color(204, 204, 204));
+        passwordField.setText("jPasswordField1");
 
         jButton8.setBackground(new java.awt.Color(204, 204, 255));
         jButton8.setText("Cancel");
 
-        jButton9.setBackground(new java.awt.Color(204, 204, 255));
-        jButton9.setText("Save");
+        saveButton.setBackground(new java.awt.Color(204, 204, 255));
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
-        jButton10.setBackground(new java.awt.Color(255, 51, 51));
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Delete Account");
+        removeUserButton.setBackground(new java.awt.Color(255, 51, 51));
+        removeUserButton.setForeground(new java.awt.Color(255, 255, 255));
+        removeUserButton.setText("Delete Account");
+        removeUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUserButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout settingsPanelLayout = new javax.swing.GroupLayout(settingsPanel);
         settingsPanel.setLayout(settingsPanelLayout);
@@ -1182,7 +1197,7 @@ public class MainFrame extends javax.swing.JFrame {
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(settingsPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton10)
+                .addComponent(removeUserButton)
                 .addGap(108, 108, 108))
             .addGroup(settingsPanelLayout.createSequentialGroup()
                 .addGap(237, 237, 237)
@@ -1195,11 +1210,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addComponent(emailField)
+                        .addComponent(surnameField)
+                        .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(278, Short.MAX_VALUE))
         );
         settingsPanelLayout.setVerticalGroup(
@@ -1208,25 +1223,25 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(124, 124, 124)
                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1))
+                    .addComponent(nameField))
                 .addGap(18, 18, 18)
                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2))
+                    .addComponent(surnameField))
                 .addGap(18, 18, 18)
                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3))
+                    .addComponent(emailField))
                 .addGap(18, 18, 18)
                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(saveButton))
                 .addGap(93, 93, 93)
-                .addComponent(jButton10)
+                .addComponent(removeUserButton)
                 .addGap(87, 87, 87))
         );
 
@@ -1359,6 +1374,17 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton20ActionPerformed
 
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        
+        userEditor();
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void removeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserButtonActionPerformed
+        // TODO add your handling code here:
+        userRemover();
+    }//GEN-LAST:event_removeUserButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1402,9 +1428,9 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Sections;
     private javax.swing.JPanel dashboardPanel;
+    private javax.swing.JTextField emailField;
     private javax.swing.JPanel informationHubPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
@@ -1422,7 +1448,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1493,7 +1518,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollBar jScrollBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -1504,7 +1528,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1512,8 +1535,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
@@ -1522,9 +1543,48 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel leftSettingsPanel;
     private javax.swing.JPanel myAquariumsPanel;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton removeUserButton;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JButton saveButton;
     private javax.swing.JPanel schedulePane;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JPanel supportPanel;
+    private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
+
+    private void userEditor() {
+    try {
+            Map<String, Object> datas = new HashMap<>();
+            datas.put("Name", nameField.getText().toString());
+            datas.put("Surname", surnameField.getText().toString());
+            datas.put("Email", emailField.getText().toString());
+            datas.put("Password", passwordField.getText().toString());
+            personProvider.editPerson("Person", "31894", datas);
+            JOptionPane.showMessageDialog(null, "Edited successfully");
+            clearForm();
+        }catch (HeadlessException e){
+        System.err.println("Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Couldn't edit");
+        }
+    }
+    
+    private void userRemover() {
+    try {
+            personProvider.removePerson("Person", "31894");
+            JOptionPane.showMessageDialog(null, "Removed successfully");
+            clearForm();
+        }catch (HeadlessException e){
+        System.err.println("Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Couldn't delete");
+        }
+    }
+    
+    void clearForm() {
+        nameField.setText("");
+        surnameField.setText("");
+        emailField.setText("");
+        passwordField.setText("");
+    }
 }

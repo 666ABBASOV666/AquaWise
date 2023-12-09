@@ -37,13 +37,13 @@ public class SignUp extends javax.swing.JFrame {
         nameField = new javax.swing.JTextField();
         surnameField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JTextField();
         signupButton = new javax.swing.JButton();
         alreadyButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,12 +69,6 @@ public class SignUp extends javax.swing.JFrame {
         emailField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailFieldActionPerformed(evt);
-            }
-        });
-
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
             }
         });
 
@@ -209,10 +203,6 @@ public class SignUp extends javax.swing.JFrame {
         
     }//GEN-LAST:event_alreadyButtonActionPerformed
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         /////////////////////////////////////////////////////////////
         //DO NOT CHANGE ANYTHING WITHOUT TELLING ME ps. -ELkhan//////
@@ -244,7 +234,7 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameField;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton signupButton;
     private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables

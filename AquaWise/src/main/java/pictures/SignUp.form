@@ -76,7 +76,7 @@
                                           <Component id="nameField" pref="199" max="32767" attributes="0"/>
                                           <Component id="surnameField" max="32767" attributes="0"/>
                                           <Component id="emailField" max="32767" attributes="0"/>
-                                          <Component id="passwordField" max="32767" attributes="0"/>
+                                          <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -146,11 +146,6 @@
         <Component class="javax.swing.JTextField" name="emailField">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailFieldActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="passwordField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="signupButton">
@@ -230,6 +225,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="passwordField">
         </Component>
       </SubComponents>
     </Container>

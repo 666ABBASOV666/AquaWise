@@ -32,5 +32,20 @@ public class personProvider {
         }
         return false;
     }
+    
+    public static boolean editPerson (String collection, String document, Map <String, Object> data) {
+        
+        db = FirestoreClient.getFirestore();
+        
+        try {
+            DocumentReference docRef = db.collection(collection).document(document);
+            ApiFuture<WriteResult> result = docRef.update(data);
+            System.out.println("Edited Successfuly");
+            return true;
+        }catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
+    }
        
 }
