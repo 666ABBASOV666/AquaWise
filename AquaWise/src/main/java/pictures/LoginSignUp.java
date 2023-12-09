@@ -6,6 +6,7 @@ package pictures;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -203,11 +204,30 @@ public class LoginSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        
-        
-        
-        
-        
+        String email = jTextField3.getText(); // Get the entered email from the JTextField
+        String password = jTextField2.getText(); // Get the entered password from the JTextField
+
+        System.out.println("Attempting to log in with Email: " + email + ", Password: " + password);
+
+        // Check login credentials using DatabaseHandler
+        boolean loginResult = DatabaseHandler.checkLogin(email, password);
+        System.out.println("Login result from DatabaseHandler: " + loginResult);
+
+        if (loginResult) {
+            // Login successful
+            System.out.println("Login successful");
+
+            // Open the MainFrame
+            MainFrame mainFrame = new MainFrame();
+            mainFrame.setVisible(true);
+
+            // Close the current LoginSignUp frame
+            close();
+        } else {
+            // Login failed
+            JOptionPane.showMessageDialog(null, "Wrong email or password. Please try again.");
+            // You can display an error message or perform other actions here.
+        } 
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed

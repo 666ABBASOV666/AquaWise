@@ -1,12 +1,17 @@
 
 package pictures;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.QuerySnapshot;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import javax.swing.JOptionPane;
+import pictures.personProvider;
 
 /**
  *
@@ -170,12 +175,13 @@ public class SignUp extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -208,6 +214,9 @@ public class SignUp extends javax.swing.JFrame {
         //DO NOT CHANGE ANYTHING WITHOUT TELLING ME ps. -ELkhan//////
         /////////////////////////////////////////////////////////////
         save();        
+        close();
+        LoginSignUp login = new LoginSignUp();
+        login.setVisible(true);
         
     }//GEN-LAST:event_signupButtonActionPerformed
 
@@ -245,24 +254,48 @@ public class SignUp extends javax.swing.JFrame {
         WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
+    
+    private boolean isPersonAlreadySignedUp(String email) {
+    try {
+        CollectionReference personCollection = ConnectionTrue.db.collection("Person");
+        ApiFuture<QuerySnapshot> querySnapshot = personCollection.whereEqualTo("Email", email).get();
+        return !querySnapshot.get().isEmpty(); // If the query result is not empty, person is already signed up
+    } catch (Exception e) {
+        System.err.println("Error checking if person is already signed up: " + e.getMessage());
+        return true; // Assume an error occurred and prevent saving to be safe
+    }
+}
+
 
     private void save() {
-        
-        int id = (int) (Math.random() * 100000);
-        try {
-            Map<String, Object> datas = new HashMap<>();
-            datas.put("Name", nameField.getText().toString());
-            datas.put("Surname", surnameField.getText().toString());
-            datas.put("Email", emailField.getText().toString());
-            datas.put("Password", passwordField.getText().toString());
-            personProvider.savePerson("Person", String.valueOf(id), datas);
-            JOptionPane.showMessageDialog(null, "Saved successfully");
-            clearForm();
-        }catch (HeadlessException e){
+    try {
+        // Check if the person is already signed up (using email as a unique identifier)
+        String email = emailField.getText().toString();
+        if (isPersonAlreadySignedUp(email)) {
+            JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
+            return; // Exit the method without saving
+        }
+
+        // Generate a unique ID using UUID
+        String id = UUID.randomUUID().toString();
+
+        // Prepare data to be saved
+        Map<String, Object> datas = new HashMap<>();
+        datas.put("Name", nameField.getText().toString());
+        datas.put("Surname", surnameField.getText().toString());
+        datas.put("Email", email);
+        datas.put("Password", passwordField.getText().toString());
+
+        // Save the person information
+        ConnectionTrue.savePerson("Person", id, datas);
+
+        JOptionPane.showMessageDialog(null, "Saved successfully");
+        clearForm();
+    } catch (HeadlessException e) {
         System.err.println("Error: " + e.getMessage());
         JOptionPane.showMessageDialog(null, "Couldn't save successfully");
-        }
     }
+}
     
     void clearForm() {
         nameField.setText("");
