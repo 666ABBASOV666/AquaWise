@@ -215,8 +215,8 @@ public class SignUp extends javax.swing.JFrame {
         /////////////////////////////////////////////////////////////
         save();        
         close();
-        LoginSignUp login = new LoginSignUp();
-        login.setVisible(true);
+        MainFrame mf = new MainFrame();
+        mf.setVisible(true);
         
     }//GEN-LAST:event_signupButtonActionPerformed
 
