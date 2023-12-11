@@ -199,11 +199,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton4.setText("My Aquariums");
-        jButton4.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jButton4StateChanged(evt);
-            }
-        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
