@@ -203,7 +203,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setForeground(new java.awt.Color(51, 51, 255));
         jButton5.setText("Settings");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1342,7 +1341,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-    myAquariums2.run();  // TODO add your handling code here:
+        myAquariums2.run(); // TODO add your handling code here:
+ 
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
