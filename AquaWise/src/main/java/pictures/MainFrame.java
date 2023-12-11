@@ -11,6 +11,8 @@ import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 import static pictures.DatabaseHandler.removePerson;
 
 /**
@@ -197,6 +199,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton4.setText("My Aquariums");
+        jButton4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jButton4StateChanged(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -1316,7 +1323,7 @@ public class MainFrame extends javax.swing.JFrame {
         Sections.addTab("HelpAndSupport", supportPanel);
 
         rightPanel.add(Sections);
-        Sections.setBounds(6, -49, 736, 570);
+        Sections.setBounds(6, -49, 756, 570);
 
         getContentPane().add(rightPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 710, 520));
 
@@ -1324,17 +1331,34 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        jButton1.setForeground(Color.BLACK);
+        jButton2.setForeground(Color.BLUE);
+        jButton3.setForeground(Color.BLACK);
+        jButton4.setForeground(Color.BLACK);
+        jButton5.setForeground(Color.BLACK);
+        jButton6.setForeground(Color.BLACK);
         Sections.setSelectedIndex(1);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Sections.setSelectedIndex(4);
+        jButton1.setForeground(Color.BLACK);
+        jButton2.setForeground(Color.BLACK);
+        jButton3.setForeground(Color.BLACK);
+        jButton4.setForeground(Color.BLACK);
+        jButton5.setForeground(Color.BLUE);
+        jButton6.setForeground(Color.BLACK);
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jButton1.setForeground(Color.BLUE);
+        jButton2.setForeground(Color.BLACK);
+        jButton3.setForeground(Color.BLACK);
+        jButton4.setForeground(Color.BLACK);
+        jButton5.setForeground(Color.BLACK);
+        jButton6.setForeground(Color.BLACK);
 
     
         Sections.setSelectedIndex(0);
@@ -1346,17 +1370,33 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+        jButton1.setForeground(Color.BLACK);
+        jButton2.setForeground(Color.BLACK);
+        jButton3.setForeground(Color.BLACK);
+        jButton4.setForeground(Color.BLUE);
+        jButton5.setForeground(Color.BLACK);
+        jButton6.setForeground(Color.BLACK);
         Sections.setSelectedIndex(3);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Sections.setSelectedIndex(2);
+        jButton1.setForeground(Color.BLACK);
+        jButton2.setForeground(Color.BLACK);
+        jButton3.setForeground(Color.BLUE);
+        jButton4.setForeground(Color.BLACK);
+        jButton5.setForeground(Color.BLACK);
+        jButton6.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-     
+        jButton1.setForeground(Color.BLACK);
+        jButton2.setForeground(Color.BLACK);
+        jButton3.setForeground(Color.BLACK);
+        jButton4.setForeground(Color.BLACK);
+        jButton5.setForeground(Color.BLACK);
+        jButton6.setForeground(Color.BLUE);
         Sections.setSelectedIndex(5);
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1392,6 +1432,10 @@ public class MainFrame extends javax.swing.JFrame {
         LoginSignUp loginSignUp = new LoginSignUp();
         loginSignUp.setVisible(true);
     }//GEN-LAST:event_removeUserButtonActionPerformed
+
+    private void jButton4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jButton4StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4StateChanged
 
     /**
      * @param args the command line arguments
