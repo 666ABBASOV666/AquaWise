@@ -218,6 +218,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton7.setText("Logout");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout leftSettingsPanelLayout = new javax.swing.GroupLayout(leftSettingsPanel);
         leftSettingsPanel.setLayout(leftSettingsPanelLayout);
@@ -1393,6 +1398,12 @@ public class MainFrame extends javax.swing.JFrame {
         LoginSignUp loginSignUp = new LoginSignUp();
         loginSignUp.setVisible(true);
     }//GEN-LAST:event_removeUserButtonActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    close();
+    LoginSignUp l = new LoginSignUp(); 
+    l.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
