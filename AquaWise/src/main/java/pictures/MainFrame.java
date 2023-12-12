@@ -26,7 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     
     private String loggedInEmail; //gathered through the login page with the help of the method setLoggedInEmail (main class method)
-    private String name;
+    private static String name;
     
     public MainFrame() {
         initComponents();
@@ -280,8 +280,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel25.setText("Welcome");
 
-        nameLabel.setText("NAME");
-
         jLabel27.setText("Aquarium Name");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -413,7 +411,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,9 +493,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(dashboardPanelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dashboardPanelLayout.setVerticalGroup(
@@ -686,9 +684,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel22)
                     .addComponent(jLabel19))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel23))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel20))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1174,7 +1172,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel5.setText("Password:");
 
         passwordField.setBackground(new java.awt.Color(204, 204, 204));
-        passwordField.setText("jPasswordField1");
 
         jButton8.setBackground(new java.awt.Color(204, 204, 255));
         jButton8.setText("Cancel");
@@ -1464,6 +1461,7 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
+                
             }
         });
         /////////////////////////////////////////////////////////////////////////////
@@ -1630,6 +1628,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void setLoggedName(String name) {
         this.name = name;
+        nameLabel.setText(this.name);
     }
 
     private void close() {

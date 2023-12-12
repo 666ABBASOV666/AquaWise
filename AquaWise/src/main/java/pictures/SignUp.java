@@ -19,6 +19,7 @@ import pictures.personProvider;
  */
 public class SignUp extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form SignUp
      */
@@ -286,6 +287,11 @@ public class SignUp extends javax.swing.JFrame {
         datas.put("Surname", surnameField.getText().toString());
         datas.put("Email", email);
         datas.put("Password", passwordField.getText().toString());
+        
+        MainFrame mf = new MainFrame();
+        DatabaseHandler db = new DatabaseHandler();
+        String name = db.getUserName(email);
+        mf.setLoggedName(name);
 
         // Save the person information
         ConnectionTrue.savePerson("Person", id, datas);
