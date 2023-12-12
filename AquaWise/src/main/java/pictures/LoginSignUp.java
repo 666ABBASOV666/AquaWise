@@ -210,7 +210,11 @@ public class LoginSignUp extends javax.swing.JFrame {
 
             // Open the MainFrame
             MainFrame mainFrame = new MainFrame();
-            mainFrame.setLoggedInEmail(email); // Set the logged-in email
+            DatabaseHandler db = new DatabaseHandler();
+            
+            mainFrame.setLoggedInEmail(email); // Set the logged-inbut  emailas
+            String name = db.getUserName(email);
+            mainFrame.setLoggedName(name);
             mainFrame.setVisible(true);
 
             // Close the current LoginSignUp frame
