@@ -25,7 +25,8 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     
-    private String loggedInEmail;
+    private String loggedInEmail; //gathered through the login page with the help of the method setLoggedInEmail (main class method)
+    private String name;
     
     public MainFrame() {
         initComponents();
@@ -1625,6 +1626,10 @@ public class MainFrame extends javax.swing.JFrame {
     //this method is for Login class so that we could use the instance of the email in MainFrame class
     public void setLoggedInEmail(String email) {
         this.loggedInEmail = email;
+    }
+    
+    public void setLoggedName(String name) {
+        this.name = name;
     }
 
     private void close() {

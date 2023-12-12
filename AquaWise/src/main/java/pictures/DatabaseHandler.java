@@ -60,6 +60,22 @@ public class DatabaseHandler {
         }
         return false;
     }
+    
+    //this method used in login class for gathering the name of the user and send it to the main class
+    public static String getUserName(String email) {
+    try {
+        ApiFuture<QuerySnapshot> querySnapshot = personCollection.whereEqualTo("Email", email).get();
+
+        if (!querySnapshot.get().isEmpty()) {
+            DocumentSnapshot personSnapshot = querySnapshot.get().getDocuments().get(0);
+            return personSnapshot.getString("Name");
+        }
+    } catch (Exception e) {
+        e.printStackTrace(); // Print the exception stack trace
+    }
+
+    return null;
+    }
 
    
    
