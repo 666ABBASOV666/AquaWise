@@ -76,6 +76,21 @@ public class DatabaseHandler {
 
     return null;
     }
+    
+    public static String getPersonIdByEmail(String email) {
+    try {
+        ApiFuture<QuerySnapshot> querySnapshot = personCollection.whereEqualTo("Email", email).get();
+
+        if (!querySnapshot.get().isEmpty()) {
+            DocumentSnapshot personSnapshot = querySnapshot.get().getDocuments().get(0);
+            return personSnapshot.getId();
+        }
+    } catch (Exception e) {
+        e.printStackTrace(); // Print the exception stack trace
+    }
+
+    return null;
+}
 
    
    

@@ -5,6 +5,9 @@
  */
 package pictures;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.QuerySnapshot;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
@@ -1157,6 +1160,11 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setText("Name:");
 
         nameField.setBackground(new java.awt.Color(204, 204, 204));
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
         jLabel3.setText("Surname:");
@@ -1412,8 +1420,58 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
-        userEditor();
+    
+    DatabaseHandler db = new DatabaseHandler();    
+    
+    // Get the updated data from the fields
+    String updatedName = nameField.getText().trim();
+    String updatedSurname = surnameField.getText().trim();
+    String updatedEmail = emailField.getText().trim();
+    String updatedPassword = passwordField.getText().trim();
+    String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+
+    // Check if the updated email is already registered
+    if (isPersonAlreadySignedUp(updatedEmail)) {
+        JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
+        return; // Exit the method without saving
+    }
+
+    // Check if the logged-in email is available
+    if (loggedInEmail != null) {
+        try {
+            // Prepare the new data to update
+            Map<String, Object> newData = new HashMap<>();
+
+            // Update fields only if they are not empty
+            if (!updatedName.isEmpty()) {
+                newData.put("Name", updatedName);
+            }
+
+            if (!updatedSurname.isEmpty()) {
+                newData.put("Surname", updatedSurname);
+            }
+
+            if (!updatedEmail.isEmpty()) {
+                newData.put("Email", updatedEmail);
+            }
+
+            if (!updatedPassword.isEmpty()) {
+                newData.put("Password", updatedPassword);
+            }
+
+            // Update the person's information in the database
+            ConnectionTrue.updatePerson("Person", loggedInId, newData);
+
+            JOptionPane.showMessageDialog(null, "Updated successfully");
+        } catch (HeadlessException e) {
+            System.err.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Couldn't update successfully");
+        }
+    } 
+    
+    else {
+        JOptionPane.showMessageDialog(null, "User not logged in");
+    }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void removeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserButtonActionPerformed
@@ -1429,6 +1487,10 @@ public class MainFrame extends javax.swing.JFrame {
     LoginSignUp l = new LoginSignUp(); 
     l.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1597,21 +1659,21 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
 
-    private void userEditor() {
-    try {
-            Map<String, Object> datas = new HashMap<>();
-            datas.put("Name", nameField.getText().toString());
-            datas.put("Surname", surnameField.getText().toString());
-            datas.put("Email", emailField.getText().toString());
-            datas.put("Password", passwordField.getText().toString());
-            personProvider.editPerson("Person", "31894", datas);
-            JOptionPane.showMessageDialog(null, "Edited successfully");
-            clearForm();
-        }catch (HeadlessException e){
-        System.err.println("Error: " + e.getMessage());
-        JOptionPane.showMessageDialog(null, "Couldn't edit");
-        }
-    }
+//    private void userEditor() {
+//    try {
+//            Map<String, Object> datas = new HashMap<>();
+//            datas.put("Name", nameField.getText().toString());
+//            datas.put("Surname", surnameField.getText().toString());
+//            datas.put("Email", emailField.getText().toString());
+//            datas.put("Password", passwordField.getText().toString());
+//            personProvider.editPerson("Person", "31894", datas);
+//            JOptionPane.showMessageDialog(null, "Edited successfully");
+//            clearForm();
+//        }catch (HeadlessException e){
+//        System.err.println("Error: " + e.getMessage());
+//        JOptionPane.showMessageDialog(null, "Couldn't edit");
+//        }
+//    }
 
     
     void clearForm() {
@@ -1636,4 +1698,15 @@ public class MainFrame extends javax.swing.JFrame {
         //        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
         this.dispose();
     }
+
+    private boolean isPersonAlreadySignedUp(String email) {
+    try {
+        CollectionReference personCollection = ConnectionTrue.db.collection("Person");
+        ApiFuture<QuerySnapshot> querySnapshot = personCollection.whereEqualTo("Email", email).get();
+        return !querySnapshot.get().isEmpty(); // If the query result is not empty, person is already signed up
+        } catch (Exception e) {
+            System.err.println("Error checking if person is already signed up: " + e.getMessage());
+            return true; // Assume an error occurred and prevent saving to be safe
+        }
+    }    
 }

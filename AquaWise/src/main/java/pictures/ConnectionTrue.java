@@ -19,6 +19,7 @@ import static pictures.personProvider.db;
 public class ConnectionTrue {
 
     public static com.google.cloud.firestore.Firestore db;
+    
 
     /**
      * Connects to Firebase Firestore.
@@ -66,5 +67,22 @@ public class ConnectionTrue {
             System.out.println("Error: " + e.getMessage());
         }
         return false;
+    }
+    
+    public static void updatePerson(String collection, String email, Map<String, Object> newData) {
+        
+        db = FirestoreClient.getFirestore();
+        
+        try {
+            
+            DocumentReference docRef = db.collection(collection).document(email);
+
+            // Update the document with the new data
+            ApiFuture<WriteResult> result = docRef.update(newData);
+
+            System.out.println("Updated Successfully");
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

@@ -301,8 +301,35 @@ public class SignUp extends javax.swing.JFrame {
     } catch (HeadlessException e) {
         System.err.println("Error: " + e.getMessage());
         JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+        }
+    }
+    
+    private void update() {
+    try {
+        // Check if the person with the given email exists
+        String email = emailField.getText().toString();
+        if (!isPersonAlreadySignedUp(email)) {
+            JOptionPane.showMessageDialog(null, "Person with this email is not registered.");
+            return; // Exit the method without updating
+        }
+
+        // Prepare data to be updated
+        Map<String, Object> datas = new HashMap<>();
+        datas.put("Name", nameField.getText().toString());
+        datas.put("Surname", surnameField.getText().toString());
+        datas.put("Password", passwordField.getText().toString());
+
+        // Update the person information
+        ConnectionTrue.updatePerson("Person", email, datas);
+
+        JOptionPane.showMessageDialog(null, "Updated successfully");
+        clearForm();
+    } catch (HeadlessException e) {
+        System.err.println("Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Couldn't update successfully");
     }
 }
+
     
     void clearForm() {
         nameField.setText("");
