@@ -195,6 +195,7 @@ public class LoginSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        
         String email = jTextField3.getText(); // Get the entered email from the JTextField
         String password = jTextField2.getText(); // Get the entered password from the JTextField
 
