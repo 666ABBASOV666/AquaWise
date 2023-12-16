@@ -15,6 +15,8 @@ public class logoutPopup extends javax.swing.JFrame {
      */
     public logoutPopup() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
