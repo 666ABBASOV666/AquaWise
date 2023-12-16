@@ -1347,6 +1347,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton4.setForeground(Color.BLACK);
         jButton5.setForeground(Color.BLUE);
         jButton6.setForeground(Color.BLACK);
+        //update
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
