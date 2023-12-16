@@ -214,11 +214,11 @@ public class SignUp extends javax.swing.JFrame {
         /////////////////////////////////////////////////////////////
         //DO NOT CHANGE ANYTHING WITHOUT TELLING ME ps. -ELkhan//////
         /////////////////////////////////////////////////////////////
-        save();        
+        if (save()) {
         close();
         MainFrame mf = new MainFrame();
         mf.setVisible(true);
-        
+    }
     }//GEN-LAST:event_signupButtonActionPerformed
 
     /**
@@ -269,13 +269,13 @@ public class SignUp extends javax.swing.JFrame {
 }
 
 
-    private void save() {
+    private boolean save() {
     try {
         // Check if the person is already signed up (using email as a unique identifier)
         String email = emailField.getText().toString();
         if (isPersonAlreadySignedUp(email)) {
             JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
-            return; // Exit the method without saving
+            return false; // Exit the method without saving
         }
 
         // Generate a unique ID using UUID
@@ -287,23 +287,21 @@ public class SignUp extends javax.swing.JFrame {
         datas.put("Surname", surnameField.getText().toString());
         datas.put("Email", email);
         datas.put("Password", passwordField.getText().toString());
-        
-        MainFrame mf = new MainFrame();
-        DatabaseHandler db = new DatabaseHandler();
-        String name = db.getUserName(email);
-        mf.setLoggedName(name);
 
         // Save the person information
         ConnectionTrue.savePerson("Person", id, datas);
 
         JOptionPane.showMessageDialog(null, "Saved successfully");
         clearForm();
+
+        return true; // Return true if save is successful
     } catch (HeadlessException e) {
         System.err.println("Error: " + e.getMessage());
         JOptionPane.showMessageDialog(null, "Couldn't save successfully");
-        }
+        return false; // Return false if save fails
     }
-    
+}
+
     private void update() {
     try {
         // Check if the person with the given email exists
