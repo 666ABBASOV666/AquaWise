@@ -1497,7 +1497,7 @@ public class MainFrame extends javax.swing.JFrame {
 //        LoginSignUp loginSignUp = new LoginSignUp();
 //        loginSignUp.setVisible(true);
 
-        deletePopup dp = new deletePopup();
+        deletePopup dp = new deletePopup(this);
         dp.setVisible(true);
     }//GEN-LAST:event_removeUserButtonActionPerformed
 
