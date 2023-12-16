@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
         rightPanel = new javax.swing.JPanel();
         Sections = new javax.swing.JTabbedPane();
         dashboardPanel = new javax.swing.JPanel();
@@ -220,10 +220,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Logout");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                logoutButtonActionPerformed(evt);
             }
         });
 
@@ -234,7 +234,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(leftSettingsPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(leftSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(leftSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +255,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(426, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton7)
+                .addComponent(logoutButton)
                 .addGap(36, 36, 36))
             .addGroup(leftSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(leftSettingsPanelLayout.createSequentialGroup()
@@ -1483,11 +1483,15 @@ public class MainFrame extends javax.swing.JFrame {
         loginSignUp.setVisible(true);
     }//GEN-LAST:event_removeUserButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-    close();
-    LoginSignUp l = new LoginSignUp(); 
-    l.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+//    close();
+//    LoginSignUp l = new LoginSignUp(); 
+//    l.setVisible(true);// TODO add your handling code here:
+
+    logoutPopup lp = new logoutPopup();
+    lp.setVisible(true);
+      
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
@@ -1553,7 +1557,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1647,6 +1650,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel leftSettingsPanel;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JPanel myAquariumsPanel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
