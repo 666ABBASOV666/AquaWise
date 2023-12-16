@@ -1077,8 +1077,18 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton13.setText("Edit");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Edit");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout myAquariumsPanelLayout = new javax.swing.GroupLayout(myAquariumsPanel);
         myAquariumsPanel.setLayout(myAquariumsPanelLayout);
@@ -1325,7 +1335,7 @@ public class MainFrame extends javax.swing.JFrame {
         Sections.addTab("HelpAndSupport", supportPanel);
 
         rightPanel.add(Sections);
-        Sections.setBounds(6, -49, 769, 570);
+        Sections.setBounds(6, -49, 756, 570);
 
         getContentPane().add(rightPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 710, 520));
 
@@ -1506,6 +1516,16 @@ public class MainFrame extends javax.swing.JFrame {
     MyAquariums3 lp = new MyAquariums3();
     lp.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+   MyAquariums3 lp = new MyAquariums3();
+    lp.setVisible(true);           // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+   MyAquariums3 lp = new MyAquariums3();
+    lp.setVisible(true);           // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments
