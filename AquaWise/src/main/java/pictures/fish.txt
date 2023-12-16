@@ -1,0 +1,150 @@
+Alligator Gar
+24 celcius - 29 celcius
+once every 4 hours
+Amberjack
+24 celcius - 29 celcius
+once every 4 hours
+Arapaima
+24 celcius - 29 celcius
+once every 4 hours
+Arctic Char
+24 celcius - 29 celcius
+once every 4 hours
+Asp
+24 celcius - 29 celcius
+once every 4 hours
+Barracuda
+24 celcius - 29 celcius
+once every 8 hours
+Barramundi
+24 celcius - 29 celcius
+once every 8 hours
+Bass
+24 celcius - 29 celcius
+once every 8 hours
+Black Drum
+24 celcius - 29 celcius
+once every 8 hours
+Black Jewfish
+24 celcius - 29 celcius
+once every 8 hours
+Black Rockfish
+24 celcius - 29 celcius
+once every 8 hours
+Bluefish
+24 celcius - 29 celcius
+once every 8 hours
+Bluenose Warehou
+24 celcius - 29 celcius
+once every 8 hours
+Bohar Snapper
+24 celcius - 29 celcius
+once every 8 hours
+Bonefish
+24 celcius - 29 celcius
+once every 8 hours
+Bonito
+18 celcius - 23 celcius
+once every 12 hours
+Bowfin
+18 celcius - 23 celcius
+once every 12 hours
+Bream
+18 celcius - 23 celcius
+once every 12 hours
+Brook Trout
+18 celcius - 23 celcius
+once every 12 hours
+Brown Trout
+18 celcius - 23 celcius
+once every 12 hours
+Bullhead
+18 celcius - 23 celcius
+once every 12 hours
+Burbot
+18 celcius - 23 celcius
+once every 12 hours
+Calico Bass
+18 celcius - 23 celcius
+once every 12 hours
+California Corbina
+18 celcius - 23 celcius
+once every 12 hours
+California Sheephead
+18 celcius - 23 celcius
+once every 12 hours
+Carp
+18 celcius - 23 celcius
+once every 12 hours
+Catfish	
+18 celcius - 23 celcius
+once every 12 hours
+Cero Mackerel
+18 celcius - 23 celcius
+once every 12 hours
+Clam
+18 celcius - 23 celcius
+once every 12 hours
+Clown Knife Fish
+18 celcius - 23 celcius
+once every 12 hours
+Coalfish	
+21 celcius - 26 celcius
+once every 4 hours
+Cobia
+21 celcius - 26 celcius
+once every 4 hours
+Cod
+21 celcius - 26 celcius
+once every 4 hours
+Common Ling
+21 celcius - 26 celcius
+once every 4 hours
+Common Pandora
+21 celcius - 26 celcius
+once every 4 hours
+Conger Eel
+21 celcius - 26 celcius
+once every 4 hours
+Coral Trout
+21 celcius - 26 celcius
+once every 4 hours
+Crab
+21 celcius - 26 celcius
+once every 4 hours
+Crappie	
+21 celcius - 26 celcius
+once every 8 hours
+Crayfish
+21 celcius - 26 celcius
+once every 8 hours
+Cutthroat Trout	
+21 celcius - 26 celcius
+once every 8 hours
+Dentex	
+21 celcius - 26 celcius
+once every 24 hours
+Dhufish	
+21 celcius - 26 celcius
+once every 24 hours
+Dogfish	
+21 celcius - 26 celcius
+once every 24 hours
+Dolly Varden
+21 celcius - 26 celcius
+once every 24 hours
+Flathead
+21 celcius - 26 celcius
+once every 24 hours
+Flounder
+21 celcius - 26 celcius
+once every 24 hours
+Freshwater Drum
+21 celcius - 26 celcius
+once every 24 hours
+Garfish	
+21 celcius - 26 celcius
+once every 24 hours
+Geelbek
+21 celcius - 26 celcius
+once every 24 hours
