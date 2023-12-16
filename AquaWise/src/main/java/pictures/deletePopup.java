@@ -13,9 +13,16 @@ import static pictures.DatabaseHandler.removePerson;
 public class deletePopup extends javax.swing.JFrame {
 
     private String loggedInEmail;
+    private MainFrame mainFrame;
 
     
-    public deletePopup() {
+    public deletePopup(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
+        initComponents();
+    }
+    
+    public deletePopup(String email) {
+        this.loggedInEmail = email;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -104,6 +111,7 @@ public class deletePopup extends javax.swing.JFrame {
     // TODO add your handling code here:
         removePerson(loggedInEmail);
         close();
+        mainFrame.dispose();
         LoginSignUp loginSignUp = new LoginSignUp();
         loginSignUp.setVisible(true);
     }//GEN-LAST:event_yesButtonActionPerformed
