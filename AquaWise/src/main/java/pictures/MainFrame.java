@@ -974,6 +974,15 @@ public class MainFrame extends javax.swing.JFrame {
         Sections.addTab("InformationHub", informationHubPanel);
 
         myAquariumsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        myAquariumsPanel.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                myAquariumsPanelAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jButton11.setText("Add New aquarium+");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -1520,6 +1529,10 @@ public class MainFrame extends javax.swing.JFrame {
    MyAquariums3 lp = new MyAquariums3();
     lp.setVisible(true);      
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void myAquariumsPanelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_myAquariumsPanelAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_myAquariumsPanelAncestorAdded
 
     /**
      * @param args the command line arguments

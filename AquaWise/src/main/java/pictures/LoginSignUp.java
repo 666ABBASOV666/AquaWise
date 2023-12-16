@@ -216,12 +216,6 @@ public class LoginSignUp extends javax.swing.JFrame {
         String name = db.getUserName(email);
         mainFrame.setLoggedName(name);
         mainFrame.setVisible(true);
-
-        // Pass the email to deletePopup
-        //deletePopup deletePopup = new deletePopup(email);
-        //deletePopup.setVisible(true);
-
-        // Close the current LoginSignUp frame
         close();
     } else {
         // Login failed

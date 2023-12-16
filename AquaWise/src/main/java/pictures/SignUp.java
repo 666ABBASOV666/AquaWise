@@ -214,10 +214,18 @@ public class SignUp extends javax.swing.JFrame {
         /////////////////////////////////////////////////////////////
         //DO NOT CHANGE ANYTHING WITHOUT TELLING ME ps. -ELkhan//////
         /////////////////////////////////////////////////////////////
+        String email = emailField.getText().toString();
+        
         if (save()) {
+                // Open the MainFrame
+        MainFrame mainFrame = new MainFrame();
+        DatabaseHandler db = new DatabaseHandler();
+
+        mainFrame.setLoggedInEmail(email); // Set the logged-in email
+        String name = db.getUserName(email);
+        mainFrame.setLoggedName(name);
+        mainFrame.setVisible(true);
         close();
-        MainFrame mf = new MainFrame();
-        mf.setVisible(true);
     }
     }//GEN-LAST:event_signupButtonActionPerformed
 
@@ -270,37 +278,42 @@ public class SignUp extends javax.swing.JFrame {
 
 
     private boolean save() {
-    try {
-        // Check if the person is already signed up (using email as a unique identifier)
-        String email = emailField.getText().toString();
-        if (isPersonAlreadySignedUp(email)) {
-            JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
-            return false; // Exit the method without saving
+        try {
+            // Check if the person is already signed up (using email as a unique identifier)
+            String email = emailField.getText().toString();
+            if (isPersonAlreadySignedUp(email)) {
+                JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
+                return false; // Exit the method without saving
+            }
+
+            // Generate a unique ID using UUID
+            String id = UUID.randomUUID().toString();
+
+            // Prepare data to be saved
+            Map<String, Object> personData = new HashMap<>();
+            personData.put("Name", nameField.getText().toString());
+            personData.put("Surname", surnameField.getText().toString());
+            personData.put("Email", email);
+            personData.put("Password", passwordField.getText().toString());
+
+            // Save the person information along with aquariums
+            boolean saveResult = personProvider.savePerson("Person", id, personData);
+
+            if (saveResult) {
+                JOptionPane.showMessageDialog(null, "Saved successfully");
+                clearForm();
+            } else {
+                JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+            }
+
+            return saveResult; // Return the result of the save operation
+        } catch (HeadlessException e) {
+            System.err.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+            return false; // Return false if save fails
         }
-
-        // Generate a unique ID using UUID
-        String id = UUID.randomUUID().toString();
-
-        // Prepare data to be saved
-        Map<String, Object> datas = new HashMap<>();
-        datas.put("Name", nameField.getText().toString());
-        datas.put("Surname", surnameField.getText().toString());
-        datas.put("Email", email);
-        datas.put("Password", passwordField.getText().toString());
-
-        // Save the person information
-        ConnectionTrue.savePerson("Person", id, datas);
-
-        JOptionPane.showMessageDialog(null, "Saved successfully");
-        clearForm();
-
-        return true; // Return true if save is successful
-    } catch (HeadlessException e) {
-        System.err.println("Error: " + e.getMessage());
-        JOptionPane.showMessageDialog(null, "Couldn't save successfully");
-        return false; // Return false if save fails
     }
-}
+
 
     private void update() {
     try {

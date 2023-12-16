@@ -29,11 +29,21 @@ public class personProvider {
         db = FirestoreClient.getFirestore();
         
         try {
-            DocumentReference docRef = db.collection(collection).document(document);
-            ApiFuture<WriteResult> result = docRef.set(data);
-            System.out.println("Saved Successfuly");
-            return true;
-        }catch (Exception e) {
+        // Save user information
+        DocumentReference userRef = db.collection(collection).document(document);
+        ApiFuture<WriteResult> userResult = userRef.set(data); // Change from userData to data
+
+        // Initialize three empty aquariums
+        for (int i = 1; i <= 3; i++) {
+            String aquariumId = "aquarium" + i;
+            Map<String, Object> aquariumData = Collections.singletonMap("name", "Aquarium " + i);
+            DocumentReference aquariumRef = userRef.collection("aquariums").document(aquariumId);
+            ApiFuture<WriteResult> aquariumResult = aquariumRef.set(aquariumData);
+        }
+
+        System.out.println("User and aquariums saved successfully");
+        return true;
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         return false;
