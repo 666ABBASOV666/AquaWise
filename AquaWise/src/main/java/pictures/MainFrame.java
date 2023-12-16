@@ -168,7 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel47 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         leftSettingsPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -1477,18 +1477,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void removeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserButtonActionPerformed
         // TODO add your handling code here:
-        removePerson(loggedInEmail);
-        close();
-        LoginSignUp loginSignUp = new LoginSignUp();
-        loginSignUp.setVisible(true);
+//        removePerson(loggedInEmail);
+//        close();
+//        LoginSignUp loginSignUp = new LoginSignUp();
+//        loginSignUp.setVisible(true);
+
+        deletePopup dp = new deletePopup();
+        dp.setVisible(true);
     }//GEN-LAST:event_removeUserButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-//    close();
-//    LoginSignUp l = new LoginSignUp(); 
-//    l.setVisible(true);// TODO add your handling code here:
 
-    logoutPopup lp = new logoutPopup();
+    logoutPopup lp = new logoutPopup(this);
     lp.setVisible(true);
       
     }//GEN-LAST:event_logoutButtonActionPerformed

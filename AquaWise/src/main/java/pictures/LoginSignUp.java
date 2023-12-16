@@ -212,8 +212,10 @@ public class LoginSignUp extends javax.swing.JFrame {
             // Open the MainFrame
             MainFrame mainFrame = new MainFrame();
             DatabaseHandler db = new DatabaseHandler();
+            deletePopup dp = new deletePopup();
             
             mainFrame.setLoggedInEmail(email); // Set the logged-inbut  emailas
+            dp.setLoggedInEmail(email);
             String name = db.getUserName(email);
             mainFrame.setLoggedName(name);
             mainFrame.setVisible(true);
