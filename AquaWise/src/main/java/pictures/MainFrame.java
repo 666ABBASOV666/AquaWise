@@ -1070,6 +1070,11 @@ public class MainFrame extends javax.swing.JFrame {
         jTextField12.setText("Water:");
 
         jButton12.setText("Edit");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("Edit");
 
@@ -1320,7 +1325,7 @@ public class MainFrame extends javax.swing.JFrame {
         Sections.addTab("HelpAndSupport", supportPanel);
 
         rightPanel.add(Sections);
-        Sections.setBounds(6, -49, 756, 570);
+        Sections.setBounds(6, -49, 769, 570);
 
         getContentPane().add(rightPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 710, 520));
 
@@ -1496,6 +1501,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    MyAquariums3 lp = new MyAquariums3();
+    lp.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

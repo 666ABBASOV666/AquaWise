@@ -16,7 +16,9 @@ public class MyAquariums3 extends javax.swing.JFrame {
      */
     public MyAquariums3() {
         initComponents();
+        setLocationRelativeTo(null);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +43,7 @@ public class MyAquariums3 extends javax.swing.JFrame {
         FishCountTF = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         BackgroundPanel.setBackground(new java.awt.Color(102, 141, 209));
 
@@ -56,7 +58,7 @@ public class MyAquariums3 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,7 +73,7 @@ public class MyAquariums3 extends javax.swing.JFrame {
             AquariumNameEditTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AquariumNameEditTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, Short.MAX_VALUE)
                 .addContainerGap())
         );
         AquariumNameEditTabLayout.setVerticalGroup(
