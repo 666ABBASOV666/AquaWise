@@ -218,8 +218,8 @@ public class LoginSignUp extends javax.swing.JFrame {
         mainFrame.setVisible(true);
 
         // Pass the email to deletePopup
-        deletePopup deletePopup = new deletePopup(email);
-        deletePopup.setVisible(true);
+        //deletePopup deletePopup = new deletePopup(email);
+        //deletePopup.setVisible(true);
 
         // Close the current LoginSignUp frame
         close();

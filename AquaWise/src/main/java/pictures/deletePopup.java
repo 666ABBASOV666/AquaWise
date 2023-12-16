@@ -19,14 +19,9 @@ public class deletePopup extends javax.swing.JFrame {
     public deletePopup(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
-    }
-    
-    public deletePopup(String email) {
-        this.loggedInEmail = email;
-        initComponents();
         setLocationRelativeTo(null);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,12 +103,8 @@ public class deletePopup extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
-    // TODO add your handling code here:
-        removePerson(loggedInEmail);
+        mainFrame.removeUser();
         close();
-        mainFrame.dispose();
-        LoginSignUp loginSignUp = new LoginSignUp();
-        loginSignUp.setVisible(true);
     }//GEN-LAST:event_yesButtonActionPerformed
 
     private void noButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noButtonActionPerformed
@@ -121,7 +112,6 @@ public class deletePopup extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_noButtonActionPerformed
 
-    
     private void close() {
         WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);

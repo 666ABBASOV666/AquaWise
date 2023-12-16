@@ -18,7 +18,6 @@ public class logoutPopup extends javax.swing.JFrame {
         this.mainFrame = mainFrame;
         initComponents();
         setLocationRelativeTo(null);
-
     }
 
     /**
@@ -110,7 +109,6 @@ public class logoutPopup extends javax.swing.JFrame {
        close();
     }//GEN-LAST:event_noButtonActionPerformed
 
-    
     private void close() {
         //        WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
         //        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);

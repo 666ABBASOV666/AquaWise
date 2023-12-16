@@ -1491,12 +1491,6 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void removeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserButtonActionPerformed
-        // TODO add your handling code here:
-//        removePerson(loggedInEmail);
-//        close();
-//        LoginSignUp loginSignUp = new LoginSignUp();
-//        loginSignUp.setVisible(true);
-
         deletePopup dp = new deletePopup(this);
         dp.setVisible(true);
     }//GEN-LAST:event_removeUserButtonActionPerformed
@@ -1514,17 +1508,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
     MyAquariums3 lp = new MyAquariums3();
-    lp.setVisible(true);        // TODO add your handling code here:
+    lp.setVisible(true);     
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
    MyAquariums3 lp = new MyAquariums3();
-    lp.setVisible(true);           // TODO add your handling code here:
+    lp.setVisible(true); 
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
    MyAquariums3 lp = new MyAquariums3();
-    lp.setVisible(true);           // TODO add your handling code here:
+    lp.setVisible(true);      
     }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
@@ -1555,6 +1549,8 @@ public class MainFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
@@ -1693,23 +1689,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel supportPanel;
     private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
-
-//    private void userEditor() {
-//    try {
-//            Map<String, Object> datas = new HashMap<>();
-//            datas.put("Name", nameField.getText().toString());
-//            datas.put("Surname", surnameField.getText().toString());
-//            datas.put("Email", emailField.getText().toString());
-//            datas.put("Password", passwordField.getText().toString());
-//            personProvider.editPerson("Person", "31894", datas);
-//            JOptionPane.showMessageDialog(null, "Edited successfully");
-//            clearForm();
-//        }catch (HeadlessException e){
-//        System.err.println("Error: " + e.getMessage());
-//        JOptionPane.showMessageDialog(null, "Couldn't edit");
-//        }
-//    }
-
     
     void clearForm() {
         nameField.setText("");
@@ -1732,6 +1711,13 @@ public class MainFrame extends javax.swing.JFrame {
         //        WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
         //        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
         this.dispose();
+    }
+    
+    public void removeUser() {
+        removePerson(loggedInEmail);
+        close();
+        LoginSignUp loginSignUp = new LoginSignUp();
+        loginSignUp.setVisible(true);
     }
 
     private boolean isPersonAlreadySignedUp(String email) {
