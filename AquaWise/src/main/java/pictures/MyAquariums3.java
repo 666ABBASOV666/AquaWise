@@ -3,22 +3,107 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pictures;
 
+package pictures;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.Dimension;
+import java.util.ArrayList;
 /**
  *
  * @author ASUS
  */
 public class MyAquariums3 extends javax.swing.JFrame {
+String[] fishes = new String[]{"Alligator Gar","Amberjack","Arapaima","Arctic Char","Asp","Barracuda","Barramundi","Bass","Black Drum",
+"Black Jewfish","Black Rockfish","Bluefish","Bluenose Warehou","Bohar Snapper","Bonefish","Bonito","Bowfin","Bream","Brook Trout",
+"Brown Trout","Bullhead","Burbot","Calico Bass","California Corbina",
+"California Sheephead","Carp","Catfish","Cero Mackerel","Clam","Clown Knife Fish","Coalfish","Cobia","Cod","Common Ling",
+"Common Pandora","Conger Eel","Coral Trout","Crab","Crappie","Crayfish","Cutthroat Trout","Dentex","Dhufish","Dogfish","Dolly Varden","Flathead",
+"Flounder","Freshwater Drum","Garfish","Geelbek"};
+ArrayList<String> aquariumList = new ArrayList<>();
+int[] maxArray = {
+    29, 26, 29, 29, 29, 27, 29, 27, 28, 28, 29, 29, 30, 25, 25, 22, 21, 24, 23, 21, 23, 20, 20, 29, 22, 22, 21, 21, 22, 23, 
+    25, 23, 24, 22, 24, 23, 26, 21, 29, 23, 24, 26, 22, 22, 26, 27, 26, 23, 22, 26};
 
-    /**
-     * Creates new form MyAquariums3
-     */
+int[] minArray = {
+    24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 
+    21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21};
+   
     public MyAquariums3() {
         initComponents();
         setLocationRelativeTo(null);
+
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (String fish : fishes) {
+            listModel.addElement(fish);
+        }
+
+        JList<String> fishList = new JList<>(listModel);
+        fishList.addListSelectionListener((e) -> {
+            if (!e.getValueIsAdjusting()) {
+                handleFishSelection(fishList.getSelectedValue());
+            }
+        });
+
+        jScrollPane1.setViewportView(fishList);
+        jScrollPane1.setPreferredSize(new Dimension(180, 70));
     }
-    
+
+    private void handleFishSelection(String selectedFish) {
+        if (aquariumList.isEmpty()) {
+            addToAquarium(selectedFish);
+            JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
+            
+        } 
+        else
+        {
+            int selectedFishIndex = -1;
+            for (int i = 0; i < fishes.length; i++) {
+                if (fishes[i].equals(selectedFish)) {
+                    selectedFishIndex = i;
+                    break;
+                }
+            }
+
+            boolean canAddFish = true;
+            for (int i = 0; i < aquariumList.size(); i++) {
+            {
+                int aquariumFishIndex = -1;
+                for (int j = 0; j < fishes.length; j++) {
+                    if (fishes[j].equals(aquariumList.get(i))) {
+                        aquariumFishIndex = j;
+                        break;
+                    }
+                }
+
+                if (selectedFishIndex != -1 && aquariumFishIndex != -1 && !((minArray[selectedFishIndex] <= maxArray[aquariumFishIndex] 
+                    && minArray[selectedFishIndex] >= minArray[aquariumFishIndex]) 
+                    || (maxArray[selectedFishIndex] >= minArray[aquariumFishIndex]) && maxArray[selectedFishIndex]  <= maxArray[aquariumFishIndex] )){
+                    canAddFish = false;
+                    break;
+                }
+                }
+
+                
+            }if (canAddFish){
+                    addToAquarium(selectedFish);
+                    JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
+                }
+                
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "You cannot add this fish because it doesn't suit with others.");
+                }
+
+            
+        }
+    }
+
+    private void addToAquarium(String fish) {
+       aquariumList.add(fish);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +130,8 @@ public class MyAquariums3 extends javax.swing.JFrame {
         FishTypeTab = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
