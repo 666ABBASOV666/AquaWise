@@ -339,7 +339,7 @@ public class MyAquariums3 extends javax.swing.JFrame {
         }
 
         // Close the MyAquariums3 popup or perform any other actions needed
-        close();
+        //close();
     }//GEN-LAST:event_saveButtonActionPerformed
 
 
