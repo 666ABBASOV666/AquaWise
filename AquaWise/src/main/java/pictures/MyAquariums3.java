@@ -6,10 +6,16 @@
 
 package pictures;
 import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 /**
  *
@@ -23,6 +29,7 @@ String[] fishes = new String[]{"Alligator Gar","Amberjack","Arapaima","Arctic Ch
 "Common Pandora","Conger Eel","Coral Trout","Crab","Crappie","Crayfish","Cutthroat Trout","Dentex","Dhufish","Dogfish","Dolly Varden","Flathead",
 "Flounder","Freshwater Drum","Garfish","Geelbek"};
 ArrayList<String> aquariumList = new ArrayList<>();
+
 int[] maxArray = {
     29, 26, 29, 29, 29, 27, 29, 27, 28, 28, 29, 29, 30, 25, 25, 22, 21, 24, 23, 21, 23, 20, 20, 29, 22, 22, 21, 21, 22, 23, 
     25, 23, 24, 22, 24, 23, 26, 21, 29, 23, 24, 26, 22, 22, 26, 27, 26, 23, 22, 26};
@@ -30,7 +37,8 @@ int[] maxArray = {
 int[] minArray = {
     24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 
     21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21};
-   
+boolean isFit;
+String chosenFish = "";
     public MyAquariums3() {
         initComponents();
         setLocationRelativeTo(null);
@@ -44,6 +52,7 @@ int[] minArray = {
         fishList.addListSelectionListener((e) -> {
             if (!e.getValueIsAdjusting()) {
                 handleFishSelection(fishList.getSelectedValue());
+                chosenFish = fishList.getSelectedValue();
             }
         });
 
@@ -53,12 +62,9 @@ int[] minArray = {
 
     private void handleFishSelection(String selectedFish) {
         if (aquariumList.isEmpty()) {
-            addToAquarium(selectedFish);
-            JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
-            
-        } 
-        else
-        {
+            isFit = true;
+            showFishAdditionMessage();
+        } else {
             int selectedFishIndex = -1;
             for (int i = 0; i < fishes.length; i++) {
                 if (fishes[i].equals(selectedFish)) {
@@ -66,10 +72,9 @@ int[] minArray = {
                     break;
                 }
             }
-
+    
             boolean canAddFish = true;
             for (int i = 0; i < aquariumList.size(); i++) {
-            {
                 int aquariumFishIndex = -1;
                 for (int j = 0; j < fishes.length; j++) {
                     if (fishes[j].equals(aquariumList.get(i))) {
@@ -77,29 +82,55 @@ int[] minArray = {
                         break;
                     }
                 }
-
-                if (selectedFishIndex != -1 && aquariumFishIndex != -1 && !((minArray[selectedFishIndex] <= maxArray[aquariumFishIndex] 
-                    && minArray[selectedFishIndex] >= minArray[aquariumFishIndex]) 
-                    || (maxArray[selectedFishIndex] >= minArray[aquariumFishIndex]) && maxArray[selectedFishIndex]  <= maxArray[aquariumFishIndex] )){
+    
+                if (selectedFishIndex != -1 && aquariumFishIndex != -1 && !((minArray[selectedFishIndex] <= maxArray[aquariumFishIndex]
+                        && minArray[selectedFishIndex] >= minArray[aquariumFishIndex])
+                        || (maxArray[selectedFishIndex] >= minArray[aquariumFishIndex]) && maxArray[selectedFishIndex] <= maxArray[aquariumFishIndex])) {
                     canAddFish = false;
                     break;
                 }
-                }
-
-                
-            }if (canAddFish){
-                    addToAquarium(selectedFish);
-                    JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
-                }
-                
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "You cannot add this fish because it doesn't suit with others.");
-                }
-
-            
+            }
+    
+            if (canAddFish) {
+                isFit = true;
+            } else {
+                isFit = false;
+            }
+    
+            showFishAdditionMessage();
         }
     }
+    
+   private void showFishAdditionMessage() {
+    String message;
+    if (isFit) {
+        message = "This fish can be added to the aquarium.";
+    } else {
+        message = "This fish cannot be added to the aquarium.";
+    }
+
+    // Create a non-modal dialog
+    JDialog dialog = new JDialog(this, "Fish Addition Message", true);
+    dialog.setLayout(new BorderLayout());
+    dialog.setSize(300, 100);
+    dialog.setLocationRelativeTo(this);
+
+    // Add a label with the message to the dialog
+    JLabel label = new JLabel(message, SwingConstants.CENTER);
+    dialog.add(label, BorderLayout.CENTER);
+
+    // Set a timer to close the dialog after a short delay
+    Timer timer = new Timer(1000, (ActionEvent e) -> {
+        dialog.setVisible(false);
+        dialog.dispose();
+    });
+    timer.setRepeats(false);
+    timer.start();
+
+    // Show the dialog
+    dialog.setVisible(true);
+}
+
 
     private void addToAquarium(String fish) {
        aquariumList.add(fish);
@@ -305,9 +336,15 @@ int[] minArray = {
         // TODO add your handling code here:
     }//GEN-LAST:event_NameEditTFActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (isFit) {
+            addToAquarium(chosenFish);
+            JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
+        } else {
+            JOptionPane.showMessageDialog(this, "You cannot add this fish because it doesn't suit with others.");
+        }
+    }
+    //GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
