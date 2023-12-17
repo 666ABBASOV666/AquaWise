@@ -9,13 +9,17 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.QuerySnapshot;
 import java.awt.HeadlessException;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.util.Properties;
 import static pictures.DatabaseHandler.removePerson;
 
 /**
@@ -164,7 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
         supportPanel = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        supportTextArea = new javax.swing.JTextArea();
         jLabel47 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
 
@@ -1283,9 +1287,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel23.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        supportTextArea.setColumns(20);
+        supportTextArea.setRows(5);
+        jScrollPane1.setViewportView(supportTextArea);
 
         jLabel47.setText(" Please explain your issue");
 
@@ -1441,7 +1445,20 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+try {
+        String email = "elxan2004abbasov@gmail.com";
+        String subject = "Support request from " + loggedInEmail;
+        String body = supportTextArea.getText(); // Assuming supportTextArea is your JTextArea
+
+        String uriStr = String.format("mailto:%s?subject=%s&body=%s",
+                                      email, 
+                                      URLEncoder.encode(subject, "UTF-8"),
+                                      URLEncoder.encode(body, "UTF-8"));
+
+        Desktop.getDesktop().mail(new URI(uriStr));
+    } catch (IOException | URISyntaxException ex) {
+        ex.printStackTrace(); // Handle exception appropriately
+    }
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -1683,7 +1700,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1709,6 +1725,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel schedulePane;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JPanel supportPanel;
+    private javax.swing.JTextArea supportTextArea;
     private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
     
