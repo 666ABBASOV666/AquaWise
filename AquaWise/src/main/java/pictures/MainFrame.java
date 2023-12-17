@@ -1516,18 +1516,27 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nameFieldActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-    MyAquariums3 lp = new MyAquariums3();
-    lp.setVisible(true);     
+        DatabaseHandler db = new DatabaseHandler();
+        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+        String aquariumName = "aquarium1";
+        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
+        lp.setVisible(true);     
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-   MyAquariums3 lp = new MyAquariums3();
-    lp.setVisible(true); 
+        DatabaseHandler db = new DatabaseHandler();
+        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+        String aquariumName = "aquarium2";
+        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
+        lp.setVisible(true);  
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-   MyAquariums3 lp = new MyAquariums3();
-    lp.setVisible(true);      
+        DatabaseHandler db = new DatabaseHandler();
+        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+        String aquariumName = "aquarium3";
+        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
+        lp.setVisible(true);       
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void myAquariumsPanelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_myAquariumsPanelAncestorAdded

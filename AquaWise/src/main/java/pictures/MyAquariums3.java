@@ -5,6 +5,8 @@
  */
 
 package pictures;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.QuerySnapshot;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -22,27 +24,33 @@ import java.util.ArrayList;
  * @author ASUS
  */
 public class MyAquariums3 extends javax.swing.JFrame {
-String[] fishes = new String[]{"Alligator Gar","Amberjack","Arapaima","Arctic Char","Asp","Barracuda","Barramundi","Bass","Black Drum",
-"Black Jewfish","Black Rockfish","Bluefish","Bluenose Warehou","Bohar Snapper","Bonefish","Bonito","Bowfin","Bream","Brook Trout",
-"Brown Trout","Bullhead","Burbot","Calico Bass","California Corbina",
-"California Sheephead","Carp","Catfish","Cero Mackerel","Clam","Clown Knife Fish","Coalfish","Cobia","Cod","Common Ling",
-"Common Pandora","Conger Eel","Coral Trout","Crab","Crappie","Crayfish","Cutthroat Trout","Dentex","Dhufish","Dogfish","Dolly Varden","Flathead",
-"Flounder","Freshwater Drum","Garfish","Geelbek"};
+    String[] fishes = new String[]{"Alligator Gar","Amberjack","Arapaima","Arctic Char","Asp","Barracuda","Barramundi","Bass","Black Drum",
+    "Black Jewfish","Black Rockfish","Bluefish","Bluenose Warehou","Bohar Snapper","Bonefish","Bonito","Bowfin","Bream","Brook Trout",
+    "Brown Trout","Bullhead","Burbot","Calico Bass","California Corbina",
+    "California Sheephead","Carp","Catfish","Cero Mackerel","Clam","Clown Knife Fish","Coalfish","Cobia","Cod","Common Ling",
+    "Common Pandora","Conger Eel","Coral Trout","Crab","Crappie","Crayfish","Cutthroat Trout","Dentex","Dhufish","Dogfish","Dolly Varden","Flathead",
+    "Flounder","Freshwater Drum","Garfish","Geelbek"};
 
-ArrayList<String> aquariumList = new ArrayList<>();
+    ArrayList<String> aquariumList = new ArrayList<>();
+    private String aquariumName;
+    private String userEmail;
+    int[] maxArray = {
+        29, 26, 29, 29, 29, 27, 29, 27, 28, 28, 29, 29, 30, 25, 25, 22, 21, 24, 23, 21, 23, 20, 20, 29, 22, 22, 21, 21, 22, 23, 
+        25, 23, 24, 22, 24, 23, 26, 21, 29, 23, 24, 26, 22, 22, 26, 27, 26, 23, 22, 26};
 
-int[] maxArray = {
-    29, 26, 29, 29, 29, 27, 29, 27, 28, 28, 29, 29, 30, 25, 25, 22, 21, 24, 23, 21, 23, 20, 20, 29, 22, 22, 21, 21, 22, 23, 
-    25, 23, 24, 22, 24, 23, 26, 21, 29, 23, 24, 26, 22, 22, 26, 27, 26, 23, 22, 26};
-
-int[] minArray = {
-    24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 
-    21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21};
-boolean isFit;
-String chosenFish = "";
-    public MyAquariums3() {
+    int[] minArray = {
+        24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 
+        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21};
+    boolean isFit;
+    String chosenFish = "";
+    
+    public MyAquariums3(String aquariumName, String userEmail) {
+        
+        
         initComponents();
         setLocationRelativeTo(null);
+        this.aquariumName = aquariumName;
+        this.userEmail = userEmail;
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (String fish : fishes) {
@@ -154,12 +162,12 @@ String chosenFish = "";
         FishCountEditTab = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         WaterEditTF = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         FishTypeTab = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -215,13 +223,6 @@ String chosenFish = "";
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Edit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Fish Type:");
 
         javax.swing.GroupLayout FishTypeTabLayout = new javax.swing.GroupLayout(FishTypeTab);
@@ -254,12 +255,22 @@ String chosenFish = "";
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
         );
 
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout BackgroundPanelLayout = new javax.swing.GroupLayout(BackgroundPanel);
         BackgroundPanel.setLayout(BackgroundPanelLayout);
         BackgroundPanelLayout.setHorizontalGroup(
             BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundPanelLayout.createSequentialGroup()
                 .addGroup(BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BackgroundPanelLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(BackgroundPanelLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -272,11 +283,8 @@ String chosenFish = "";
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(BackgroundPanelLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(BackgroundPanelLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(144, 144, 144)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         BackgroundPanelLayout.setVerticalGroup(
@@ -297,7 +305,7 @@ String chosenFish = "";
                     .addComponent(FishTypeTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(saveButton)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -315,18 +323,24 @@ String chosenFish = "";
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         if (isFit) {
             addToAquarium(chosenFish);
             JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
+            System.out.println(chosenFish);
+
+            // Get the selected fish and aquarium name
+            String selectedFish = chosenFish;
+
+            // Save the selected fish to the aquarium in the database
+            personProvider.saveFishToAquarium(userEmail, aquariumName, selectedFish);
         } else {
             JOptionPane.showMessageDialog(this, "You cannot add this fish because it doesn't suit with others.");
         }
-       
-            System.out.println (aquariumList.size());
-        
-    }
-                                            
+
+        // Close the MyAquariums3 popup or perform any other actions needed
+        close();
+    }//GEN-LAST:event_saveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -335,7 +349,6 @@ String chosenFish = "";
     private javax.swing.JPanel FishTypeTab;
     private javax.swing.JTextField WaterEditTF;
     private javax.swing.JPanel WaterEditTab;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -344,5 +357,10 @@ String chosenFish = "";
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
+
+    private void close() {
+        dispose();
+    }
 }

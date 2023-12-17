@@ -7,6 +7,7 @@ import com.google.cloud.firestore.QuerySnapshot;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -278,41 +279,49 @@ public class SignUp extends javax.swing.JFrame {
 
 
     private boolean save() {
-        try {
-            // Check if the person is already signed up (using email as a unique identifier)
-            String email = emailField.getText().toString();
-            if (isPersonAlreadySignedUp(email)) {
-                JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
-                return false; // Exit the method without saving
-            }
-
-            // Generate a unique ID using UUID
-            String id = UUID.randomUUID().toString();
-
-            // Prepare data to be saved
-            Map<String, Object> personData = new HashMap<>();
-            personData.put("Name", nameField.getText().toString());
-            personData.put("Surname", surnameField.getText().toString());
-            personData.put("Email", email);
-            personData.put("Password", passwordField.getText().toString());
-
-            // Save the person information along with aquariums
-            boolean saveResult = personProvider.savePerson("Person", id, personData);
-
-            if (saveResult) {
-                JOptionPane.showMessageDialog(null, "Saved successfully");
-                clearForm();
-            } else {
-                JOptionPane.showMessageDialog(null, "Couldn't save successfully");
-            }
-
-            return saveResult; // Return the result of the save operation
-        } catch (HeadlessException e) {
-            System.err.println("Error: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Couldn't save successfully");
-            return false; // Return false if save fails
+    try {
+        // Check if the person is already signed up (using email as a unique identifier)
+        String email = emailField.getText().toString();
+        if (isPersonAlreadySignedUp(email)) {
+            JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
+            return false; // Exit the method without saving
         }
+
+        // Generate a unique ID using UUID
+        String id = UUID.randomUUID().toString();
+
+        // Prepare data to be saved
+        Map<String, Object> personData = new HashMap<>();
+        personData.put("Name", nameField.getText().toString());
+        personData.put("Surname", surnameField.getText().toString());
+        personData.put("Email", email);
+        personData.put("Password", passwordField.getText().toString());
+
+        // Save the person information and aquariums using the same UUID
+        boolean saveResult = personProvider.savePerson("Person", id, personData);
+
+        if (saveResult) {
+            // Add three aquariums for the newly signed up user using the same UUID
+            for (int i = 1; i <= 3; i++) {
+                String aquariumId = "aquarium" + i;
+                Map<String, Object> aquariumData = Collections.singletonMap("name", "Aquarium " + i);
+                personProvider.saveAquarium(id, aquariumId, aquariumData);
+            }
+
+            JOptionPane.showMessageDialog(null, "Saved successfully");
+            clearForm();
+        } else {
+            JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+        }
+
+        return saveResult; // Return the result of the save operation
+    } catch (HeadlessException e) {
+        System.err.println("Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+        return false; // Return false if save fails
     }
+}
+
 
 
     private void update() {
