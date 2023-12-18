@@ -1532,12 +1532,14 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
 
+    DatabaseHandler db = new DatabaseHandler();
+    String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+    MyAquariums3 aq1 = new MyAquariums3("aquarium1", loggedInId);
+    MyAquariums3 aq2 = new MyAquariums3("aquarium2", loggedInId);
+    MyAquariums3 aq3 = new MyAquariums3("aquarium3", loggedInId);
+    
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        DatabaseHandler db = new DatabaseHandler();
-        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
-        String aquariumName = "aquarium1";
-        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
-        lp.setVisible(true);     
+    aq1.setVisible(true);     
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -1545,15 +1547,15 @@ try {
         String loggedInId = db.getPersonIdByEmail(loggedInEmail);
         String aquariumName = "aquarium2";
         MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
-        lp.setVisible(true);  
+       lp.setVisible(true);  
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        DatabaseHandler db = new DatabaseHandler();
-        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
-        String aquariumName = "aquarium3";
-        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
-        lp.setVisible(true);       
+//        DatabaseHandler db = new DatabaseHandler();
+//        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+//        String aquariumName = "aquarium3";
+//        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
+        aq3.setVisible(true);       
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void myAquariumsPanelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_myAquariumsPanelAncestorAdded

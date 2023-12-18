@@ -293,6 +293,7 @@ public class SignUp extends javax.swing.JFrame {
         personData.put("Surname", surnameField.getText().toString());
         personData.put("Email", email);
         personData.put("Password", passwordField.getText().toString());
+        //personData.put("Time", );
 
         // Save the person information and aquariums using the same UUID
         boolean saveResult = personProvider.savePerson("Person", id, personData);
