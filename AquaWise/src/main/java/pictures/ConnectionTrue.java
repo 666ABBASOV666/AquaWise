@@ -9,6 +9,7 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import static pictures.personProvider.db;
@@ -54,6 +55,24 @@ public class ConnectionTrue {
         }
     }
     
+    public static void updatePerson(String collection, String email, Map<String, Object> newData) {
+        
+        db = FirestoreClient.getFirestore();
+        
+        try {
+            
+            DocumentReference docRef = db.collection(collection).document(email);
+
+            // Update the document with the new data
+            ApiFuture<WriteResult> result = docRef.update(newData);
+
+            System.out.println("Updated Successfully");
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    
     public static boolean savePerson (String collection, String document, Map <String, Object> data) {
         
         db = FirestoreClient.getFirestore();
@@ -69,20 +88,19 @@ public class ConnectionTrue {
         return false;
     }
     
-    public static void updatePerson(String collection, String email, Map<String, Object> newData) {
-        
+    public static void updateLastLoggedTime(String collection, String email, String signUpDate) {
         db = FirestoreClient.getFirestore();
-        
+
         try {
-            
             DocumentReference docRef = db.collection(collection).document(email);
 
-            // Update the document with the new data
-            ApiFuture<WriteResult> result = docRef.update(newData);
+            // Update the "SignUpDate" field with the new sign-up date
+            Map<String, Object> updateData = Collections.singletonMap("SignUpDate", signUpDate);
+            ApiFuture<WriteResult> result = docRef.update(updateData);
 
-            System.out.println("Updated Successfully");
+            System.out.println("Sign-up date updated successfully");
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error updating sign-up date: " + e.getMessage());
         }
     }
 }
