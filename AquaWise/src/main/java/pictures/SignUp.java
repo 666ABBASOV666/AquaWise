@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import pictures.personProvider;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime; 
 
 /**
  *
@@ -227,9 +229,6 @@ public class SignUp extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_signupButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -293,7 +292,7 @@ public class SignUp extends javax.swing.JFrame {
         personData.put("Surname", surnameField.getText().toString());
         personData.put("Email", email);
         personData.put("Password", passwordField.getText().toString());
-        //personData.put("Time", );
+        personData.put("SignUpDate", CurrentDateAndTime.getCurrentDateAndTime()); // Add the signup date
 
         // Save the person information and aquariums using the same UUID
         boolean saveResult = personProvider.savePerson("Person", id, personData);
