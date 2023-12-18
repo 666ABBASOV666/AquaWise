@@ -1539,22 +1539,26 @@ try {
     MyAquariums3 aq3 = new MyAquariums3("aquarium3", loggedInId);
     
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-    aq1.setVisible(true);     
+        DatabaseHandler db = new DatabaseHandler();
+        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+        String aquariumName = "aquarium1";
+        MyAquariums3 aq1 = new MyAquariums3(aquariumName, loggedInId);
+        aq1.setVisible(true);    
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         DatabaseHandler db = new DatabaseHandler();
         String loggedInId = db.getPersonIdByEmail(loggedInEmail);
         String aquariumName = "aquarium2";
-        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
-       lp.setVisible(true);  
+        MyAquariums3 aq2 = new MyAquariums3(aquariumName, loggedInId);
+        aq2.setVisible(true);  
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-//        DatabaseHandler db = new DatabaseHandler();
-//        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
-//        String aquariumName = "aquarium3";
-//        MyAquariums3 lp = new MyAquariums3(aquariumName, loggedInId);
+        DatabaseHandler db = new DatabaseHandler();
+        String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+        String aquariumName = "aquarium3";
+        MyAquariums3 aq3 = new MyAquariums3(aquariumName, loggedInId);
         aq3.setVisible(true);       
     }//GEN-LAST:event_jButton14ActionPerformed
 

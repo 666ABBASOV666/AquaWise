@@ -31,7 +31,7 @@ public class MyAquariums3 extends javax.swing.JFrame {
     "Common Pandora","Conger Eel","Coral Trout","Crab","Crappie","Crayfish","Cutthroat Trout","Dentex","Dhufish","Dogfish","Dolly Varden","Flathead",
     "Flounder","Freshwater Drum","Garfish","Geelbek"};
 
-    ArrayList<String> aquariumList = new ArrayList<>();
+    private static ArrayList<String> aquariumList = new ArrayList<>();
     private String aquariumName;
     private String userEmail;
     int[] maxArray = {
@@ -81,33 +81,36 @@ public class MyAquariums3 extends javax.swing.JFrame {
                     break;
                 }
             }
-    
-            boolean canAddFish = true;
-            for (int i = 0; i < aquariumList.size(); i++) {
-                int aquariumFishIndex = -1;
-                for (int j = 0; j < fishes.length; j++) {
-                    if (fishes[j].equals(aquariumList.get(i))) {
-                        aquariumFishIndex = j;
-                        break;
-                    }
-                }
-    
-                if (selectedFishIndex != -1 && aquariumFishIndex != -1 && !((minArray[selectedFishIndex] <= maxArray[aquariumFishIndex]
-                        && minArray[selectedFishIndex] >= minArray[aquariumFishIndex])
-                        || (maxArray[selectedFishIndex] >= minArray[aquariumFishIndex]) && maxArray[selectedFishIndex] <= maxArray[aquariumFishIndex])) {
-                    canAddFish = false;
-                    break;
-                }
-            }
-    
+
+            boolean canAddFish = isCompatible(selectedFishIndex);
+
             if (canAddFish) {
                 isFit = true;
             } else {
                 isFit = false;
             }
-    
+
             showFishAdditionMessage();
         }
+    }
+
+    private boolean isCompatible(int selectedFishIndex) {
+        for (int i = 0; i < aquariumList.size(); i++) {
+            int aquariumFishIndex = -1;
+            for (int j = 0; j < fishes.length; j++) {
+                if (fishes[j].equals(aquariumList.get(i))) {
+                    aquariumFishIndex = j;
+                    break;
+                }
+            }
+
+            if (selectedFishIndex != -1 && aquariumFishIndex != -1 && !((minArray[selectedFishIndex] <= maxArray[aquariumFishIndex]
+                    && minArray[selectedFishIndex] >= minArray[aquariumFishIndex])
+                    || (maxArray[selectedFishIndex] >= minArray[aquariumFishIndex]) && maxArray[selectedFishIndex] <= maxArray[aquariumFishIndex])) {
+                return false;
+            }
+        }
+        return true;
     }
     
    private void showFishAdditionMessage() {
@@ -324,22 +327,30 @@ public class MyAquariums3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        if (isFit) {
-            addToAquarium(chosenFish);
-            JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
-            System.out.println(chosenFish);
-
-            // Get the selected fish and aquarium name
-            String selectedFish = chosenFish;
-
-            // Save the selected fish to the aquarium in the database
-            personProvider.saveFishToAquarium(userEmail, aquariumName, selectedFish);
-        } else {
-            JOptionPane.showMessageDialog(this, "You cannot add this fish because it doesn't suit with others.");
+ // Check compatibility before adding to the database
+    int selectedFishIndex = -1;
+    for (int i = 0; i < fishes.length; i++) {
+        if (fishes[i].equals(chosenFish)) {
+            selectedFishIndex = i;
+            break;
         }
+    }
 
-        // Close the MyAquariums3 popup or perform any other actions needed
-        //close();
+    if (isCompatible(selectedFishIndex)) {
+        addToAquarium(chosenFish);
+        JOptionPane.showMessageDialog(this, "Fish added to the aquarium!");
+        System.out.println(chosenFish);
+
+        // Get the selected fish and aquarium name
+        String selectedFish = chosenFish;
+
+        // Save the selected fish to the aquarium in the database
+        personProvider.saveFishToAquarium(userEmail, aquariumName, selectedFish);
+    } else {
+        JOptionPane.showMessageDialog(this, "You cannot add this fish because it doesn't suit with others.");
+        // Remove the last added fish from the list if it's not compatible
+        // removeFromAquarium(chosenFish);
+    }
     }//GEN-LAST:event_saveButtonActionPerformed
 
 
