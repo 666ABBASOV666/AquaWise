@@ -263,63 +263,74 @@ public class SignUp extends javax.swing.JFrame {
     }
     
     private boolean isPersonAlreadySignedUp(String email) {
-    try {
-        CollectionReference personCollection = ConnectionTrue.db.collection("Person");
-        ApiFuture<QuerySnapshot> querySnapshot = personCollection.whereEqualTo("Email", email).get();
-        return !querySnapshot.get().isEmpty(); // If the query result is not empty, person is already signed up
-    } catch (Exception e) {
-        System.err.println("Error checking if person is already signed up: " + e.getMessage());
-        return true; // Assume an error occurred and prevent saving to be safe
+        try {
+            CollectionReference personCollection = ConnectionTrue.db.collection("Person");
+            ApiFuture<QuerySnapshot> querySnapshot = personCollection.whereEqualTo("Email", email).get();
+            return !querySnapshot.get().isEmpty(); // If the query result is not empty, person is already signed up
+        } catch (Exception e) {
+            System.err.println("Error checking if person is already signed up: " + e.getMessage());
+            return true; // Assume an error occurred and prevent saving to be safe
+        }
     }
-}
 
 
     private boolean save() {
-    try {
-        // Check if the person is already signed up (using email as a unique identifier)
-        String email = emailField.getText().toString();
-        if (isPersonAlreadySignedUp(email)) {
-            JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
-            return false; // Exit the method without saving
-        }
+        try {
+            // Check if the person is already signed up (using email as a unique identifier)
+            String email = emailField.getText().toString();
 
-        // Generate a unique ID using UUID
-        String id = UUID.randomUUID().toString();
-
-        // Prepare data to be saved
-        Map<String, Object> personData = new HashMap<>();
-        personData.put("Name", nameField.getText().toString());
-        personData.put("Surname", surnameField.getText().toString());
-        personData.put("Email", email);
-        personData.put("Password", passwordField.getText().toString());
-        personData.put("SignUpDate", CurrentDateAndTime.getCurrentDateAndTime()); // Add the signup date
-
-        // Save the person information and aquariums using the same UUID
-        boolean saveResult = personProvider.savePerson("Person", id, personData);
-
-        if (saveResult) {
-            // Add three aquariums for the newly signed up user using the same UUID
-            for (int i = 1; i <= 3; i++) {
-                String aquariumId = "aquarium" + i;
-                Map<String, Object> aquariumData = Collections.singletonMap("name", "Aquarium " + i);
-                personProvider.saveAquarium(id, aquariumId, aquariumData);
+            // Validate email format using a regular expression
+            if (!isValidEmail(email)) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
+                return false; // Exit the method without saving
             }
 
-            JOptionPane.showMessageDialog(null, "Saved successfully");
-            clearForm();
-        } else {
+            if (isPersonAlreadySignedUp(email)) {
+                JOptionPane.showMessageDialog(null, "Person with this email is already signed up.");
+                return false; // Exit the method without saving
+            }
+
+            // Generate a unique ID using UUID
+            String id = UUID.randomUUID().toString();
+
+            // Prepare data to be saved
+            Map<String, Object> personData = new HashMap<>();
+            personData.put("Name", nameField.getText().toString());
+            personData.put("Surname", surnameField.getText().toString());
+            personData.put("Email", email);
+            personData.put("Password", passwordField.getText().toString());
+            personData.put("SignUpDate", CurrentDateAndTime.getCurrentDateAndTime()); // Add the signup date
+
+            // Save the person information and aquariums using the same UUID
+            boolean saveResult = personProvider.savePerson("Person", id, personData);
+
+            if (saveResult) {
+                // Add three aquariums for the newly signed up user using the same UUID
+                for (int i = 1; i <= 3; i++) {
+                    String aquariumId = "aquarium" + i;
+                    Map<String, Object> aquariumData = Collections.singletonMap("name", "Aquarium " + i);
+                    personProvider.saveAquarium(id, aquariumId, aquariumData);
+                }
+
+                JOptionPane.showMessageDialog(null, "Saved successfully");
+                clearForm();
+            } else {
+                JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+            }
+
+            return saveResult; // Return the result of the save operation
+        } catch (HeadlessException e) {
+            System.err.println("Error: " + e.getMessage());
             JOptionPane.showMessageDialog(null, "Couldn't save successfully");
+            return false; // Return false if save fails
         }
-
-        return saveResult; // Return the result of the save operation
-    } catch (HeadlessException e) {
-        System.err.println("Error: " + e.getMessage());
-        JOptionPane.showMessageDialog(null, "Couldn't save successfully");
-        return false; // Return false if save fails
     }
-}
 
-
+    // Method to validate email format using a regular expression
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
+    }
 
     private void update() {
     try {
