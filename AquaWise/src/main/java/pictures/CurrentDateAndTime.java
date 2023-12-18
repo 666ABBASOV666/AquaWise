@@ -6,15 +6,13 @@ import java.time.LocalTime;
 public class CurrentDateAndTime {  
 
     static DateTimeFormatter dtf;
-    String previousDateTime = "2020/01/01 00:00:00";
+    String previousDateTime = "2020/01/01 21:21:21";
 
     public static void main(String[] args) {  
         CurrentDateAndTime cdt = new CurrentDateAndTime();
         String currentDateTime = getCurrentDateAndTime();
         System.out.println(currentDateTime);
-        
-        
-        
+          
     }  
     CurrentDateAndTime(){
         String str = getTimeDifference();
@@ -37,6 +35,15 @@ public class CurrentDateAndTime {
         int minuteDifference = getDifference(previousTime.getMinute(), currentTime.getMinute());
         int secondDifference = getDifference(previousTime.getSecond(), currentTime.getSecond());
 
+        while (secondDifference < 0) {
+            secondDifference = secondDifference + 60;
+            minuteDifference = minuteDifference - 1;
+        }
+        while (minuteDifference < 0) {
+            minuteDifference = minuteDifference + 60;
+            hourDifference = hourDifference - 1;
+        }
+
         rtn = rtn + hourDifference + " hours, " + minuteDifference + " minutes, " + secondDifference + " seconds";
 
 
@@ -48,4 +55,5 @@ public class CurrentDateAndTime {
     int strToInt(String str){
         return Integer.parseInt(str);
     }
+    
 }

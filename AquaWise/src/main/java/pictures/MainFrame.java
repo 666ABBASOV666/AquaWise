@@ -34,6 +34,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     private String loggedInEmail; //gathered through the login page with the help of the method setLoggedInEmail (main class method)
     private static String name;
+    String[][] feeding = new String[2][50];
     
     public MainFrame() {
         initComponents();
