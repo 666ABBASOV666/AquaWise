@@ -126,7 +126,7 @@ public class LoginSignUp extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addGap(0, 40, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(32, 32, 32)
+                                        .addGap(29, 29, 29)
                                         .addComponent(jTextField3)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -195,33 +195,41 @@ public class LoginSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-      String email = jTextField3.getText(); // Get the entered email from the JTextField
-    String password = jTextField2.getText(); // Get the entered password from the JTextField
+        String email = jTextField3.getText(); // Get the entered email from the JTextField
+        String password = jTextField2.getText(); // Get the entered password from the JTextField
 
-    System.out.println("Attempting to log in with Email: " + email + ", Password: " + password);
+        System.out.println("Attempting to log in with Email: " + email + ", Password: " + password);
 
-    // Check login credentials using DatabaseHandler
-    boolean loginResult = DatabaseHandler.checkLogin(email, password);
-    System.out.println("Login result from DatabaseHandler: " + loginResult);
+        // Check login credentials using DatabaseHandler
+        boolean loginResult = DatabaseHandler.checkLogin(email, password);
+            System.out.println("Login result from DatabaseHandler: " + loginResult);
 
-    if (loginResult) {
-        // Login successful
-        System.out.println("Login successful");
+            if (loginResult) {
+                // Login successful
+                System.out.println("Login successful");
 
-        // Open the MainFrame
-        MainFrame mainFrame = new MainFrame();
-        DatabaseHandler db = new DatabaseHandler();
+                // Open the MainFrame
+                MainFrame mainFrame = new MainFrame();
+                DatabaseHandler db = new DatabaseHandler();
 
-        mainFrame.setLoggedInEmail(email); // Set the logged-in email
-        String name = db.getUserName(email);
-        mainFrame.setLoggedName(name);
-        mainFrame.setVisible(true);
-        close();
-    } else {
-        // Login failed
-        JOptionPane.showMessageDialog(null, "Wrong email or password. Please try again.");
-        // You can display an error message or perform other actions here.
-    }  
+                mainFrame.setLoggedInEmail(email); // Set the logged-in email
+                String name = db.getUserName(email);
+                mainFrame.setLoggedName(name);
+
+                // Update the last logged time (SignUpDate) in the database
+                String signUpDate = CurrentDateAndTime.getCurrentDateAndTime();
+                String userId = DatabaseHandler.getPersonIdByEmail(email);
+                DatabaseHandler.updateLastLoggedTime("Person", userId, signUpDate);
+
+                mainFrame.setVisible(true);
+                close();
+            } 
+            
+            else {
+                // Login failed
+                JOptionPane.showMessageDialog(null, "Wrong email or password. Please try again.");
+                // You can display an error message or perform other actions here.
+            }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed

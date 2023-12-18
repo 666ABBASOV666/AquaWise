@@ -1471,6 +1471,7 @@ try {
     String updatedEmail = emailField.getText().trim();
     String updatedPassword = passwordField.getText().trim();
     String loggedInId = db.getPersonIdByEmail(loggedInEmail);
+    
 
     // Check if the updated email is already registered
     if (isPersonAlreadySignedUp(updatedEmail)) {
@@ -1523,8 +1524,8 @@ try {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
 
-    logoutPopup lp = new logoutPopup(this);
-    lp.setVisible(true);
+        logoutPopup lp = new logoutPopup(this);
+        lp.setVisible(true);
       
     }//GEN-LAST:event_logoutButtonActionPerformed
 
