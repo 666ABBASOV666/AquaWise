@@ -17,6 +17,7 @@ public class logoutPopup extends javax.swing.JFrame {
     public logoutPopup(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 
@@ -36,7 +37,7 @@ public class logoutPopup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 89, 209));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         yesButton.setForeground(new java.awt.Color(255, 0, 51));
@@ -56,6 +57,7 @@ public class logoutPopup extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Are you sure?");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -64,13 +66,14 @@ public class logoutPopup extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(yesButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(noButton)))
+                .addComponent(yesButton)
+                .addGap(18, 18, 18)
+                .addComponent(noButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
