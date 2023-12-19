@@ -37,7 +37,6 @@ public class MainFrame extends javax.swing.JFrame {
     private static String name;
     String[][] feeding = new String[2][50];
     
-    
     public MainFrame() {
         initComponents();
         
