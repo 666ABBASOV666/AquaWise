@@ -48,7 +48,8 @@ public class MyAquariums3 extends javax.swing.JFrame {
         
         
         initComponents();
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.aquariumName = aquariumName;
         this.userEmail = userEmail;
 

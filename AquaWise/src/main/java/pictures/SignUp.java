@@ -30,6 +30,7 @@ public class SignUp extends javax.swing.JFrame {
         ConnectionTrue.ConnectFirebase();
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

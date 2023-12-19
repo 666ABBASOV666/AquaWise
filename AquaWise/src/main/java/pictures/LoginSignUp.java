@@ -19,6 +19,7 @@ public class LoginSignUp extends javax.swing.JFrame {
      */
     public LoginSignUp() {
         initComponents();
+        setResizable(false);
     }
 
     /**
@@ -188,7 +189,8 @@ public class LoginSignUp extends javax.swing.JFrame {
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         close();
         SignUp signup = new SignUp();
-        signup.setVisible(true);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         
         
         
