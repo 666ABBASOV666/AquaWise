@@ -1429,7 +1429,7 @@
                               <Component id="jLabel6" min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="jButton11" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="50" pref="122" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
@@ -1440,18 +1440,11 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="aquarium1Label" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="aquarium2Label" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="aquarium3Label" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="aquarium2Label" max="32767" attributes="0"/>
+                              <Component id="aquarium3Label" max="32767" attributes="0"/>
+                              <Component id="aquarium1Label" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextField7" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="jTextField8" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -1463,7 +1456,7 @@
                               <Component id="jButton13" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton14" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="151" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
